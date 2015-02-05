@@ -4,15 +4,31 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+<?php
+session_start();
+if (isset($_POST["submit"])) {
+  if ($_POST["user"] == "php5" && $_POST["pass"] == "iscool") {
+    $_SESSION["username"] = $_POST["user"];
+  }
+}
+?>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-        <?php
-        // put your code here
-        echo "######################";
-        ?>
-    </body>
+<head>
+<title>User Authentication</title>
+</head>
+<body>
+<?php
+if (isset($_SESSION["username"])) {
+  echo("You are logged in!");
+} else {
+?>
+<form method="post">
+<input type="text" name="user" /><br />
+<input type="password" name="pass" /><br />
+<input type="submit" name="submit" value="Login" />
+</form>
+<?php
+}
+?>
+</body>
 </html>
